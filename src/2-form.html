@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <load
+      src="./partials/header.html"
+      icon-path="./img/sprite.svg#logo"
+      highlight-curr="active"
+    />
+    <main>
+      <section class="galery-form">
+        <div class="container">
+          <h2 class="title">Form</h2>
+          <form class="form">
+            <label class="form__label">
+              Email
+              <input
+                class="form__input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter email"
+                autofocus
+              />
+            </label>
+            <label class="form__label">
+              Message
+              <textarea
+                id="textarea"
+                class="form__textarea t"
+                name="message"
+                rows="8"
+              ></textarea>
+            </label>
+            <button type="submit" class="form__btn">Submit</button>
+          </form>
+        </div>
+      </section>
+    </main>
+    <load src="./partials/footer.html" />
+    <script type="module" src="./js/2-form.js"></script>
+  </body>
+</html>
