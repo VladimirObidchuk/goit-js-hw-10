@@ -1,10 +1,67 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 const inputFp = document.getElementById('datetime-picker');
 const startButton = document.querySelector('[data-start]');
-inputFp.classList.add('input-disabled');
-startButton.classList.add('button-disabled');
+
+class MessageAlert {
+  constructor(title, message, position, timeout, transitionIn, transitionOut) {
+    this.title = title;
+    this.message = message;
+    this.position = position;
+    this.timeout = timeout;
+    this.transitionIn = transitionIn;
+    this.transitionOut = transitionOut;
+  }
+  info() {
+    iziToast.info({
+      title: this.title,
+      message: this.message,
+      position: this.position,
+      timeout: this.timeout,
+      transitionIn: this.transitionIn,
+      transitionOut: this.transitionOut,
+    });
+  }
+  success() {
+    iziToast.success({
+      title: this.title,
+      message: this.message,
+      position: this.position,
+      timeout: this.timeout,
+      transitionIn: this.transitionIn,
+      transitionOut: this.transitionOut,
+    });
+  }
+  error() {
+    iziToast.error({
+      title: this.title,
+      message: this.message,
+      position: this.position,
+      timeout: this.timeout,
+      transitionIn: this.transitionIn,
+      transitionOut: this.transitionOut,
+    });
+  }
+}
+class ErrorAlert extends MessageAlert {
+  constructor(message) {
+    super('Error', message, 'topRight', 5000, 'fadeInDown', 'fadeOutUp');
+  }
+}
+class SuccessAlert extends MessageAlert {
+  constructor(message) {
+    super('success', message, 'topRight', 5000, 'fadeInDown', 'fadeOutUp');
+  }
+}
+class InfoAlert extends MessageAlert {
+  constructor(message) {
+    super('info', message, 'topRight', 5000, 'blue', 'fadeInDown', 'fadeOutUp');
+  }
+}
+
 startButton.disabled = true;
 let userSelectedDate = null;
 
@@ -15,8 +72,12 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     userSelectedDate = selectedDates[0];
+
+    const errorAlertInstance = new ErrorAlert(
+      'Please choose a date in the future!'
+    );
     if (userSelectedDate <= new Date()) {
-      window.alert('Please choose a date in the future');
+      errorAlertInstance.error();
     } else {
       startButton.disabled = false;
     }
@@ -54,10 +115,11 @@ function startCountDown(targetDate) {
   const countdownInterval = setInterval(() => {
     const now = new Date();
     const timeRemaining = targetDate - now;
-
+    const InfoAlertInstans = new InfoAlert('Time is up!!');
     if (timeRemaining <= 0) {
       clearInterval(countdownInterval);
-      alert('Time is up!');
+
+      InfoAlertInstans.info();
     } else {
       const { days, hours, minutes, seconds } = convertMs(timeRemaining);
       document.querySelector('[data-days]').textContent = days;
