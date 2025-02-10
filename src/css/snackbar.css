@@ -23,31 +23,27 @@
   letter-spacing: 0.04em;
   color: #2e2f42;
 }
-.form__input,
-.form__textarea {
+.form__input {
+  max-width: 100%;
+  height: 40px;
   outline: none;
   border-radius: 4px;
-  border: 2px solid #808080;
+  border: 1px solid #808080;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.04em;
   color: #2e2f42;
   transition: border 250ms ease-out;
-}
-.form__input {
-  max-width: 100%;
-  height: 40px;
-}
-.form__textarea {
-  max-width: 100%;
-  resize: none;
+  padding: 8px 16px;
 }
 .form__input:hover,
-.form__textarea:hover {
-  border: 2px solid black;
+.form__choice:hover {
+  border: 1px solid black;
 }
-
+.form__input:active {
+  border: 1px solid #4e75ff;
+}
 .form__btn {
   font-weight: 500;
   font-size: 16px;
@@ -56,7 +52,7 @@
   color: #fff;
   border-radius: 8px;
   padding: 8px 16px;
-  width: 95px;
+  width: 360px;
   height: 40px;
   border: none;
   outline: none;

@@ -15,7 +15,28 @@
     />
     <main>
       <section class="galery-form">
-        <div class="container"></div>
+        <div class="container">
+          <form class="form">
+            <label class="form__label">
+              Delay (ms)
+              <input type="number" name="delay" class="form__input" required />
+            </label>
+
+            <fieldset class="form__choice">
+              <legend>State</legend>
+              <label>
+                <input type="radio" name="state" value="fulfilled" required />
+                Fulfilled
+              </label>
+              <label>
+                <input type="radio" name="state" value="rejected" required />
+                Rejected
+              </label>
+            </fieldset>
+
+            <button type="submit" class="form__btn">Create notification</button>
+          </form>
+        </div>
       </section>
     </main>
     <load src="./partials/footer.html" />
